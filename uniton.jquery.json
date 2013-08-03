@@ -1,0 +1,38 @@
+{
+    "name": "UnitOn",
+    "title": "jQuery UnitOn - resources manager",
+    "description": "Resources manager - jQuery plugin",
+    "keywords": [
+        "script",
+	"css",
+	"resources",
+	"manager",
+	"load",
+        "preload"
+    ],
+    "version": "0.1.3",
+    "author": {
+        "name": "PretorDH, Deparadox LLC and other contributors",
+        "url": "http://uniton.deparadox.com/#about"
+    },
+    "maintainers": [
+        {
+            "name": "PretorDH",
+            "email": "pretordh@deparadox.com",
+            "url": "http://www.deparadox.com"
+        }
+    ],
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/PretorDH/UnitOn/blob/master/LICENSE.md"
+        }
+    ],
+    "bugs": "https://github.com/PretorDH/UnitOn/issues",
+    "homepage": "http://uniton.deparadox.com",
+    "docs": "http://uniton.deparadox.com/#get",
+    "download": "http://uniton.deparadox.com/unit-on.js",
+    "dependencies": {
+        "jquery": ">=1.8"
+    }
+}
