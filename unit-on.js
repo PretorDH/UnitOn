@@ -1,5 +1,5 @@
 ﻿/**
- * jQuery.Unit-On v0.1.3
+ * Unit-On v0.2.1
  * @author Dark Heart aka PretorDH
  * @site uniton.deparadox.com
  * MIT license
@@ -29,7 +29,12 @@
 		(typeof f != "undefined") && document.getElementsByTagName("head")[0].appendChild(f) && console.log('Load:'+h['css']);
 	};
 	this.jssLoad = function (Su) {
-		$.getScript(Su['jss'],function(e){console.log('Load: '+Su['jss']); Su.onload && Su.onload(); Su.onload=null; Su.loaded=true});
+		var callback = function(e){if (Su.loaded) return; console.log('Load: '+Su['jss']); Su.onload && Su.onload(); Su.onload=Su.onreadystatechange=null; Su.loaded=true};
+/*		$.getScript(Su['jss'],callback); */ 
+		var script = document.createElement('script');
+		script.setAttribute('src', src);
+		script.onreadystatechange = script.onload = callback;
+		document.getElementsByTagName('head')[0].appendChild(script);
 	}
 
 	for(var h in this.U) {
