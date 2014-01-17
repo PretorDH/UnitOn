@@ -1,5 +1,5 @@
 ﻿/**
- * Unit-On v0.2.3
+ * Unit-On v0.2.4
  * @author Dark Heart aka PretorDH
  * @site uniton.deparadox.com
  * MIT license
@@ -22,11 +22,13 @@
 	};
 	this.cssLoad = function (Su,c) {
 		var a,f=document.createElement("link");
-		(a=f.setAttribute)("rel", "stylesheet");
-		a("type", "text/css");
-		a("onload", function(){Su.onload && Su.onload()});
-		a("href", Su['css']);
-		(typeof f != "undefined") && document.getElementsByTagName("head")[0].appendChild(f) && console.log('Load:'+h['css']);
+		f.setAttribute("rel", "stylesheet");
+		f.setAttribute("type", "text/css");
+		f.setAttribute("onload", function(){Su.onload && Su.onload()});
+		f.setAttribute("href", Su['css']);
+		(typeof f != "undefined") 
+			&& document.getElementsByTagName("head")[0].appendChild(f) 
+			&& console.log('Load:'+h['css']);
 	};
 	this.jssLoad = function (Su) {
 		var callback = function(e){if (Su.loaded) return; console.log('Load: '+Su['jss']); Su.onload && Su.onload(); Su.onload=Su.onreadystatechange=null; Su.loaded=true};
