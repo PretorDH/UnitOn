@@ -1,5 +1,5 @@
 ﻿/**
- * Unit-On v0.2.4
+ * Unit-On v0.2.5
  * @author Dark Heart aka PretorDH
  * @site uniton.deparadox.com
  * MIT license
@@ -10,25 +10,27 @@
 	this.U = o;
 	this.unitLoad = function (h,c) {
 		var Su=Unit.U[h];
-		if (Su.loaded || !!document.getElementById(h)) return console.log('Unit.Bypass '+h);
+		if (Su.loaded || !!document.getElementById(h)) return Su.loaded=true;
 		if (Su.loaded===false && typeof c=='function') {
 			var a=Su.onload;
 			return Su.onload = function (){a && a();c && c()};
 		};
 		Su.onload = c;
-		if (Su.css) Unit.cssLoad(Su,(Su.jss)?null:Su.onload);
+		if (Su.css) Unit.cssLoad(Su);
 		if (Su.jss) Unit.jssLoad(Su);
 		Su.loaded = false;
 	};
-	this.cssLoad = function (Su,c) {
+	this.cssLoad = function (Su) {
 		var a,f=document.createElement("link");
 		f.setAttribute("rel", "stylesheet");
-		f.setAttribute("type", "text/css");
-		f.setAttribute("onload", function(){Su.onload && Su.onload()});
+		f.setAttribute("type", "text/css");	
 		f.setAttribute("href", Su['css']);
-		(typeof f != "undefined") 
-			&& document.getElementsByTagName("head")[0].appendChild(f) 
-			&& console.log('Load:'+h['css']);
+		if (!Su.jss && Su.onload) 
+			f.setAttribute("onload", function(){Su.onload && Su.onload();});
+		if (typeof f != "undefined") {
+			document.getElementsByTagName("head")[0].appendChild(f);
+			console.log('Load:'+Su['css']);
+		}
 	};
 	this.jssLoad = function (Su) {
 		var callback = function(e){if (Su.loaded) return; console.log('Load: '+Su['jss']); Su.onload && Su.onload(); Su.onload=Su.onreadystatechange=null; Su.loaded=true};
